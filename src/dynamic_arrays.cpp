@@ -48,9 +48,13 @@ void dynamicArrays() {
     // TODO: Allocate a dynamic array of 'capacity' ints on the heap
     //       Store it in int* called 'arr'
 
+    int* arr = new int[capacity];
+
     std::cout << "Empty array created";
     // TODO: Call printArray(arr, count, capacity) to display the state
     // Expected output: "Empty array created  [](count=0, capacity=4)"
+
+    printArray(arr, count, capacity);
 
     // --- 2. Adding elements ---
     std::cout << "\n--- 2. Adding Elements ---" << '\n';
@@ -59,6 +63,8 @@ void dynamicArrays() {
     //       Hint: arr[count] = 10; count++;
     // TODO: Add 20 the same way
     // TODO: Add 30 the same way
+
+    arr[count] = 10;
 
     std::cout << "After adding 10, 20, 30:";
     // TODO: Call printArray to display the state
