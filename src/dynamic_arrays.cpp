@@ -64,17 +64,25 @@ void dynamicArrays() {
     // TODO: Add 20 the same way
     // TODO: Add 30 the same way
 
-    arr[count] = 10;
+    arr[count] = 10; count++;
+	arr[count] = 20; count++;
+	arr[count] = 30; count++;
 
     std::cout << "After adding 10, 20, 30:";
     // TODO: Call printArray to display the state
     // Expected output: "After adding 10, 20, 30:  [10, 20, 30]  (count=3, capacity=4)"
 
+    printArray(arr, count, capacity);
+
     // TODO: Add 40 to fill the array to capacity
+
+    arr[count] = 40; count++;
 
     std::cout << "After adding 40 (full!):";
     // TODO: Call printArray to display the state
     // Expected output: "After adding 40 (full!):  [10, 20, 30, 40]  (count=4, capacity=4)"
+
+    printArray(arr, count, capacity);
 
     // ! DISCUSSION: Now count == capacity. The array is full!
     //   If we try to add another element with arr[count] = 50, we'd be
@@ -106,13 +114,21 @@ void dynamicArrays() {
     // TODO: Set a new variable 'newCapacity' to capacity * 2
     // Expected output: "New capacity: 8"
 
+	int newCapacity = capacity * 2;
+
     // Step 2: Allocate a new, bigger array
     // TODO: Allocate a new array of 'newCapacity' ints
     //       Store it in int* called 'newArr'
 
+	int* newArr = new int[newCapacity];
+
     // Step 3: Copy existing elements from old to new
     // TODO: Use a for loop to copy arr[i] to newArr[i] for each existing element
-    //
+    
+    for (int i = 0; i < count; ++i) {
+        newArr[i] = arr[i];
+    }
+
     // ! DISCUSSION: Why use a loop instead of a bulk copy?
     //   For plain ints a raw byte copy would work, but for objects
     //   with constructors/destructors (like std::string) you MUST
@@ -123,7 +139,9 @@ void dynamicArrays() {
 
     // Step 4: Delete the old array
     // TODO: delete[] the old array (arr)
-    //
+    
+    delete[] arr;
+
     // ! DISCUSSION: Why must we delete the OLD array?
     //   We allocated it with new[], so we own that memory. The new
     //   array is a separate allocation. If we just reassign arr to
@@ -132,7 +150,10 @@ void dynamicArrays() {
     // Step 5: Update the pointer and capacity
     // TODO: Point arr to newArr (arr = newArr)
     // TODO: Update capacity to newCapacity
-    //
+    
+	arr = newArr;
+	capacity = newCapacity;
+
     // ! DISCUSSION: After arr = newArr, both pointers refer to the same memory.
     //   We don't delete newArr separately — arr now "owns" it.
     //   We just moved ownership from the old block to the new one.
@@ -148,14 +169,21 @@ void dynamicArrays() {
     // TODO: Call printArray to display the state
     // Expected output: "Resized!  [10, 20, 30, 40]  (count=4, capacity=8)"
 
+	printArray(arr, count, capacity);
+
     // --- 4. Adding more elements after resize ---
     std::cout << "\n--- 4. Adding After Resize ---" << '\n';
 
     // TODO: Add 50, 60, 70 to the array (same pattern: arr[count] = value; count++)
+    arr[count] = 50; count++;
+	arr[count] = 60; count++;
+	arr[count] = 70; count++;
 
     std::cout << "After adding 50, 60, 70:";
     // TODO: Call printArray to display the state
     // Expected output: "After adding 50, 60, 70:  [10, 20, 30, 40, 50, 60, 70]  (count=7, capacity=8)"
+
+	printArray(arr, count, capacity);
 
     // ! DISCUSSION: We added 3 more elements without resizing because
     //   capacity (8) is still greater than count (7). The doubling
@@ -165,6 +193,9 @@ void dynamicArrays() {
     std::cout << "\n--- 5. Cleanup ---" << '\n';
 
     // TODO: delete[] arr and set to nullptr
+
+    delete[] arr;
+    arr = nullptr;
 
     std::cout << "Dynamic array freed" << '\n';
 

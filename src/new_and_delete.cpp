@@ -191,7 +191,7 @@ void newAndDelete() {
     //   memory. This is called RAII (Resource Acquisition Is Initialization):
     //   tie the resource's lifetime to an object's lifetime.
 
-    std::cout << "\nSmart pointers automatically clean up — no delete needed!" << '\n';
+    std::cout << "\nSmart pointers automatically clean up - no delete needed!" << '\n';
 
     // --- 4. Smart pointers: shared_ptr ---
     // ? SEE DIAGRAM: images/shared_ptr.png — shows shared ownership, make_shared, and reference counting
